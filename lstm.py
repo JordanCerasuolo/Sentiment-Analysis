@@ -54,6 +54,9 @@ trained = train_model(Optimizer="rmsprop", X_train=X_train,Y_train=Y_train,X_val
 
 fittedModel, model = trained
 
+model.save("savedModels/initial.keras")
+
+
 # print accuracy of model
 (loss, accuracy) = model.evaluate(X_val, Y_val)
 print("Test Accuracy: ",accuracy)

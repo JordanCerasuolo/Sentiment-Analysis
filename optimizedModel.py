@@ -28,7 +28,7 @@ Y_val = Dataset[1][1]
 
 output_dim=32 # hyperparam
 batch_size=32 # hyperparam
-epochs=8 # hyperparam
+epochs=12 # hyperparam
 
 def train_model(Optimizer, X_train, Y_train, X_val, Y_val):
     model = Sequential() # MODEL USED!

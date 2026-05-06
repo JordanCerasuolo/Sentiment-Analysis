@@ -18,7 +18,7 @@ import pickle
 Dataset = imdb.load_data(num_words=10000)
 # Zero-Padding
 
-maxLength = 200 # hyperparam
+maxLength = 300 # hyperparam
 
 
 
@@ -32,29 +32,32 @@ Y_val = Dataset[1][1]
 
 # model name to load
 
-modelName = "rmsprop-oDim-32-bSize-512-e-4-mLen-200"
+modelName = "initial"
 
 # load the model
 model = keras.models.load_model("savedModels/"+modelName+".keras")
 
-with open("savedModels/"+modelName+'.pkl', 'rb') as f:
-    history = pickle.load(f)
+try:
+    with open("savedModels/"+modelName+'.pkl', 'rb') as f:
+        history = pickle.load(f)
 
-# print accuracy of model
-(loss, accuracy) = model.evaluate(X_val, Y_val)
-print("Test Accuracy: ",accuracy)
+    # print accuracy of model
+    (loss, accuracy) = model.evaluate(X_val, Y_val)
+    print("Test Accuracy: ",accuracy)
 
 
-# Plot accuracy per epoch
+    # Plot accuracy per epoch
 
-print("Printing accuracy graphs")
-plt.plot(history["accuracy"], label="Accuracy")
-plt.plot(history["val_accuracy"], label="Validation Accuracy") # validation accuracy is more useful here
-plt.title("Accuracy per Epoch")
-plt.xlabel("Epoch")
-plt.ylabel("Accuracy")
-plt.legend()
-plt.show()
+    print("Printing accuracy graphs")
+    plt.plot(history["accuracy"], label="Accuracy")
+    plt.plot(history["val_accuracy"], label="Validation Accuracy") # validation accuracy is more useful here
+    plt.title("Accuracy per Epoch")
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy")
+    plt.legend()
+    plt.show()
+except:
+    pass
 
 
 # Plot confusion matrix
